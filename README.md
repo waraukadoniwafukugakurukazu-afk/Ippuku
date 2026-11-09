@@ -22,9 +22,13 @@
 3. **販売商品：** `index.html` の `<section id="goods">` 内を変更してください。現在の画像は商品カテゴリーを表すイラストで、実際の在庫を意味しません。
 4. **ブランドや配色：** `styles.css` の冒頭で調整できます。
 
-## GitHub Pages での公開
+## Cloudflare Workers での公開
 
-GitHubのリポジトリで **Settings → Pages → Build and deployment → Deploy from a branch** を選び、`main` ブランチの `/(root)` を公開元に設定します。公開URLはGitHub上のPages設定画面に表示されます。
+Cloudflare の **Workers & Pages → ippuku → Settings → Builds** で GitHub リポジトリ `Ippuku` と `main` ブランチを接続します。Build command は空欄、Deploy command は `npx wrangler deploy` を設定してください。
+
+リポジトリには `wrangler.jsonc`（Worker名 `ippuku`、静的ファイル公開設定）を用意しています。接続後は `main` へのコミットをきっかけに Cloudflare の自動デプロイが実行されます。結果は Workers の Builds / Deployments で確認してください。公開URLは Cloudflare ダッシュボードの Overview / Domains で確認できます。
+
+`README.md` の公開手順修正は、接続確認のための新しいコミットも兼ねています。
 
 公開前には、最新のメニュー・商品の実在や価格、所在地、営業時間、および喫煙関連の施設表示・法令への適合を確認してください。
 
@@ -36,6 +40,8 @@ Ippuku/
 ├── styles.css    # 渋い黒・真鍮色のデザイン、レスポンシブ対応
 ├── script.js     # スマホメニュー・店舗情報・地図の切り替え
 ├── favicon.svg   # 一のロゴ
+├── wrangler.jsonc # Cloudflare Workers の設定
+├── .assetsignore  # 配信対象の除外設定
 └── README.md     # この案内
 ```
 
